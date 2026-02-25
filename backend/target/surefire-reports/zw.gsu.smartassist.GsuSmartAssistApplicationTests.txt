@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: zw.gsu.smartassist.GsuSmartAssistApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.11 s -- in zw.gsu.smartassist.GsuSmartAssistApplicationTests
