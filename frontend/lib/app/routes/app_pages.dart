@@ -1,9 +1,9 @@
 
 import 'package:get/get.dart';
+import '../modules/admin/dashboard/admin_dashboard_view.dart';
 import '../modules/chat/chat_view.dart';
 import '../modules/faq/faq_view.dart';
 import '../modules/admin/login/admin_login_view.dart';
-import '../modules/admin/dashboard/admin_dashboard_view.dart';
 
 class AppPages {
   static final routes = [
