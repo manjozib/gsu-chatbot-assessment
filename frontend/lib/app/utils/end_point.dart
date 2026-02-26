@@ -1,6 +1,6 @@
 class Endpoint {
   // static String? baseUrl;
-  static String? baseUrl = "http://10.0.12.11:8081/api";
+  static String? baseUrl = "http://10.0.12.59:8081/api";
 
   // static void setBaseUrl(String ipAddress, String portNumber) {
   //   baseUrl = "http://$ipAddress:$portNumber";
@@ -15,10 +15,14 @@ class Endpoint {
   }
 
   static String getFaqsApi() {
-    return "${getBaseUrl()}/chat";
+    return "${getBaseUrl()}/faqs";
   }
 
   static String getChatApi() {
-    return "${getBaseUrl()}/faqs";
+    return "${getBaseUrl()}/chat";
+  }
+
+  static String getAuthApi() {
+    return "${getBaseUrl()}/auth";
   }
 }
