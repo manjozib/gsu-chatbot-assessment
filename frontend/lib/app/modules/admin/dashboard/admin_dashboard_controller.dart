@@ -75,7 +75,7 @@ class AdminManagementController extends GetxController {
 
   Future<void> createFaq(Faq faq) async {
     try {
-
+      final token = await Storage.getToken();
       final url = Uri.parse('$baseUrl/api/admin/faqs');
       // Remove id if it's 0 (new item)
       final Map<String, dynamic> data = faq.toJson();
@@ -85,7 +85,7 @@ class AdminManagementController extends GetxController {
         url,
         headers: {
           'Content-Type': 'application/json',
-          if (_token != null) 'Authorization': 'Bearer $_token',
+          if (token != null) 'Authorization': 'Bearer $token',
         },
         body: json.encode(data),
       );
@@ -104,12 +104,13 @@ class AdminManagementController extends GetxController {
 
   Future<void> updateFaq(int id, Faq faq) async {
     try {
+      final token = await Storage.getToken();
       final url = Uri.parse('$baseUrl/api/admin/faqs/$id');
       final response = await http.put(
         url,
         headers: {
           'Content-Type': 'application/json',
-          if (_token != null) 'Authorization': 'Bearer $_token',
+          if (token != null) 'Authorization': 'Bearer $token',
         },
         body: json.encode(faq.toJson()),
       );
@@ -127,12 +128,14 @@ class AdminManagementController extends GetxController {
   }
 
   Future<void> deleteFaq(int id) async {
+    print(id);
     try {
+      final token = await Storage.getToken();
       final url = Uri.parse('$baseUrl/api/admin/faqs/$id');
       final response = await http.delete(
         url,
         headers: {
-          if (_token != null) 'Authorization': 'Bearer $_token',
+          if (token != null) 'Authorization': 'Bearer $token',
         },
       );
 
