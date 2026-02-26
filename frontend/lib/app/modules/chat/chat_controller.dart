@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'chat_service.dart';
 
 class ChatController extends GetxController {
-  final ChatApiService _apiService = ChatApiService();
+  final _apiService = Get.put(ChatApiService());
   var messages = <Map<String, dynamic>>[].obs;
   final sessionId = 'session-${DateTime.now().millisecondsSinceEpoch}';
 

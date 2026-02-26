@@ -16,7 +16,6 @@ class AdminLoginController extends GetxController {
       isPasswordHidden.value = !isPasswordHidden.value;
 
   Future<void> login() async {
-    print(emailController.text.isEmpty);
     if (emailController.text.isEmpty || passwordController.text.isEmpty) {
       Get.snackbar(
         'Error',
@@ -31,26 +30,15 @@ class AdminLoginController extends GetxController {
     isLoading.value = true;
     try {
       Login l = Login(email: emailController.text, password: passwordController.text);
-      print(l.email);
       final result = await _apiLoginService.login(l);
-      print(result.token);
       //save token
       Storage.saveToken(result.token);
       Get.offNamed('/admin/dashboard');
     } catch (e) {
-      print(e.toString());
       Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.BOTTOM);
     } finally {
       isLoading.value = false;
     }
-
-    // Simulation
-    // await Future.delayed(const Duration(seconds: 2));
-
-
-
-    // On success, navigate to dashboard
-
   }
 
   @override
