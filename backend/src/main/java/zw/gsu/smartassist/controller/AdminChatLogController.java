@@ -20,9 +20,17 @@ public class AdminChatLogController {
     private final ChatSessionRepository repo;
     public AdminChatLogController(ChatSessionRepository repo) { this.repo = repo; }
 
+//    @GetMapping
+//    public Page<ChatSession> logs(@RequestParam(defaultValue = "0") int page,
+//                                  @RequestParam(defaultValue = "20") int size) {
+//        return repo.findAll(PageRequest.of(page, size, Sort.by("timestamp").descending()));
+//    }
+
     @GetMapping
-    public Page<ChatSession> logs(@RequestParam(defaultValue = "0") int page,
-                                  @RequestParam(defaultValue = "20") int size) {
+    public Page<ChatSession> logs(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "20") int size) {
         return repo.findAll(PageRequest.of(page, size, Sort.by("timestamp").descending()));
     }
+
 }

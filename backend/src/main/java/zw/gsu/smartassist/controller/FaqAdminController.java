@@ -17,9 +17,16 @@ public class FaqAdminController {
     private final KnowledgeBaseService kbService;
     public FaqAdminController(KnowledgeBaseService kbService) { this.kbService = kbService; }
 
+//    @GetMapping
+//    public Page<FaqResponse> list(@RequestParam(defaultValue = "0") int page,
+//                                  @RequestParam(defaultValue = "20") int size) {
+//        return kbService.list(page, size);
+//    }
+
     @GetMapping
-    public Page<FaqResponse> list(@RequestParam(defaultValue = "0") int page,
-                                  @RequestParam(defaultValue = "20") int size) {
+    public Page<FaqResponse> list(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "20") int size) {
         return kbService.list(page, size);
     }
 
