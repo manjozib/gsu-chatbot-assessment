@@ -7,12 +7,12 @@ class Chat {
   factory Chat.fromJson(Map<String, dynamic> json) {
     return Chat(
         message: json['message'],
-        sessionId: json['session_id'],
+        sessionId: json['sessionId'],
     );
   }
 
   Map<String, dynamic> toJson() => {
     'message': message,
-    'session_id': sessionId,
+    'sessionId': sessionId,
   };
 }
