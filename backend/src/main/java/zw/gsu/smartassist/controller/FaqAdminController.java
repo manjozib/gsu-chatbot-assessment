@@ -35,13 +35,24 @@ public class FaqAdminController {
         return ResponseEntity.ok(kbService.create(req));
     }
 
+//    @PutMapping("/{id}")
+//    public ResponseEntity<FaqResponse> update(@PathVariable Long id, @RequestBody @Valid FaqCreateRequest req){
+//        return ResponseEntity.ok(kbService.update(id, req));
+//    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<FaqResponse> update(@PathVariable Long id, @RequestBody @Valid FaqCreateRequest req){
+    public ResponseEntity<FaqResponse> update(@PathVariable(name = "id") Long id,
+                                              @RequestBody @Valid FaqCreateRequest req) {
         return ResponseEntity.ok(kbService.update(id, req));
     }
 
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> delete(@PathVariable Long id){
+//        kbService.delete(id); return ResponseEntity.noContent().build();
+//    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
+    public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
         kbService.delete(id); return ResponseEntity.noContent().build();
     }
 }
