@@ -1,4 +1,4 @@
-import 'package:frontend/app/data/models/chart.dart';
+import 'package:frontend/app/data/models/chat.dart';
 import 'package:get/get.dart';
 import 'chat_service.dart';
 
