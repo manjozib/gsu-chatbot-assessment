@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/app/utils/time_formatter.dart';
 import 'package:get/get.dart';
 import '../../../models/faq.dart';
 import 'admin_dashboard_controller.dart';
@@ -165,8 +166,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView>
                 title: Text(log.user),
                 subtitle: Text(log.message),
                 trailing: Text(
-                  // '${log.timestamp.hour}:${log.timestamp.minute}',
-                  '${log.timestamp}',
+                  TimeFormatter.format(log.timestamp),
                   style: const TextStyle(color: Colors.grey),
                 ),
               ),
