@@ -7,17 +7,13 @@ import '../../../models/login_response.dart';
 
 class AdminApiLoginService extends GetConnect {
 
-  @override
-  void onInit() {
-    baseUrl = Endpoint.getAuthApi();
-    super.onInit();
-  }
-
   Future<LoginResponse> login(Login login) async {
     try {
       final headers = <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       };
+
+      final baseUrl = Endpoint.getAuthApi();
 
       final response = await http.post(
         Uri.parse('$baseUrl/login'),

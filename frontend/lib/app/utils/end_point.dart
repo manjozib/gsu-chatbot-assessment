@@ -30,4 +30,6 @@ class Endpoint {
   static String getChatApi() => "$baseUrl/chat";
 
   static String getAuthApi() => "$baseUrl/auth";
+
+  static String getFaqApi() => "$baseUrl/faqs";
 }

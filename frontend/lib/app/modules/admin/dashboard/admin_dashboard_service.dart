@@ -82,7 +82,7 @@ class AdminManagementService {
 
   // ---------------- FAQs ----------------
   Future<Map<String, dynamic>> fetchFaqs(int page, int size) {
-    return _get(Endpoint.getAdminApi(), query: {
+    return _get(Endpoint.getFaqApi(), query: {
       'page': page.toString(),
       'size': size.toString(),
     });

@@ -59,7 +59,7 @@ class _ChatViewState extends State<ChatView> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(
-              Icons.settings,
+              Icons.settings_ethernet,
             size: 40,
           ),
           onPressed: () => Get.toNamed('/config'),

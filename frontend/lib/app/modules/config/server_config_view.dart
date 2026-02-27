@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../utils/end_point.dart';
 import '../../utils/storage.dart';
+import 'package:get/get.dart';
 
 class ServerConfigView extends StatefulWidget {
   const ServerConfigView({super.key});
@@ -39,14 +41,16 @@ class _ServerConfigViewState extends State<ServerConfigView> {
   Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
 
-    await Storage.saveServerConfig(
-      ipController.text.trim(),
-      portController.text.trim(),
-    );
+    final ip = ipController.text.trim();
+    final port = portController.text.trim();
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Server configuration saved')),
-    );
+    await Storage.saveServerConfig(ip, port);
+
+    await Endpoint.setBaseUrl(ip, port);
+
+    Get.snackbar('Success', 'Server configuration saved');
+    Get.back();
+    Get.offAllNamed('/chat');
   }
 
   String? _validateIp(String? value) {
@@ -66,7 +70,10 @@ class _ServerConfigViewState extends State<ServerConfigView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Server Configuration')),
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text('Server Configuration')
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(

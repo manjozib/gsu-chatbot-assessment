@@ -106,7 +106,7 @@ class AdminLoginView extends StatelessWidget {
                             // Handle forgot password
                             Get.snackbar(
                               'Info',
-                              'Forgot password flow – implement as needed',
+                              'Feature not yet implemented',
                               snackPosition: SnackPosition.BOTTOM,
                             );
                           },

@@ -7,20 +7,15 @@ import 'package:http/http.dart' as http;
 
 class ChatApiService extends GetConnect {
 
-  @override
-  void onInit() {
-    baseUrl = Endpoint.getChatApi();
-    super.onInit();
-  }
-
   Future<String> createChat(Chat chat) async {
     try {
       final headers = <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       };
+      final baseUrl = Endpoint.getChatApi();
 
       final response = await http.post(
-        Uri.parse('$baseUrl'),
+        Uri.parse(baseUrl),
         headers: headers,
         body: jsonEncode(chat.toJson()),
       );

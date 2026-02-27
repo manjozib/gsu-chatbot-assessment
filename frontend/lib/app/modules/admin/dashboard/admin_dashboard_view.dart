@@ -36,7 +36,6 @@ class _AdminDashboardViewState extends State<AdminDashboardView>
 
   void _handleTabChange() {
     if (!_tabController.indexIsChanging) {
-      // Optionally reload data when the tab becomes active
       if (_tabController.index == 0) {
         _refreshFaqs();
       } else {
@@ -166,7 +165,8 @@ class _AdminDashboardViewState extends State<AdminDashboardView>
                 title: Text(log.user),
                 subtitle: Text(log.message),
                 trailing: Text(
-                  '${log.timestamp.hour}:${log.timestamp.minute}',
+                  // '${log.timestamp.hour}:${log.timestamp.minute}',
+                  '${log.timestamp}',
                   style: const TextStyle(color: Colors.grey),
                 ),
               ),

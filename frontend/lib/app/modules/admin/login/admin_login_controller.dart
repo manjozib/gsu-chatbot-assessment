@@ -33,6 +33,8 @@ class AdminLoginController extends GetxController {
       final result = await _apiLoginService.login(l);
       //save token
       Storage.saveToken(result.token);
+      emailController.clear();
+      passwordController.clear();
       Get.offNamed('/admin/dashboard');
     } catch (e) {
       Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.BOTTOM);

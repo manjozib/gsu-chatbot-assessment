@@ -1,6 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 
+import 'end_point.dart';
+
 class Storage {
   static const _k='jwt';
   static const _ipKey = 'server_ip';
@@ -30,11 +32,11 @@ class Storage {
 
   static Future<String> getServerIp() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_ipKey) ?? '10.0.17.12';
+    return prefs.getString(_ipKey) ?? '127.0.0.1';
   }
 
   static Future<String> getServerPort() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_portKey) ?? '8081';
+    return prefs.getString(_portKey) ?? '8080';
   }
 }
