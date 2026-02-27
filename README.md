@@ -27,7 +27,7 @@ Flutter UI  ⇄  REST API  ⇄  Spring Boot Backend  ⇄  PostgreSQL DB
 Controller → Service → Repository → Entities → Database
  
 ### 🔹 Flutter (GetX) Architecture
-View → Controller → Provider → API Service → Models
+View → Controller → API Service → Models
 
 ### 🔹 Key Components
 Component | Description
@@ -73,12 +73,12 @@ mvn clean spring-boot:run
 ```
 Backend available at:
 ```bash
-http://<IP_ADDRESS>:8080
+http://<YOUR_LAN_IP>:8080
 ```
 
 3️⃣ Open API docs
 ```bash
-http://<IP_ADDRESS>:8080/swagger-ui.html
+http://<YOUR_LAN_IP>:8080/swagger-ui.html
 ```
 
 ### Frontend (Flutter) Setup
@@ -96,8 +96,8 @@ flutter run
 ```
 4️⃣ API Base URL
 ```bash
-Android Emulator: http://10.0.2.2:8080/api
-Real device: http://YOUR_LAN_IP:8080/api
+Android Emulator: http://<YOUR_LAN_IP>:8080/api
+Real device: http://<YOUR_LAN_IP>:8080/api
 ```
 
 ## 🗄 5. Database Setup
@@ -122,7 +122,7 @@ password: Admin@12345
 ## 🌐 6. API Documentation Summary
 Full API docs:
 
-👉 http://<IP_ADDRESS>:8080/swagger-ui.html
+👉 http://<YOUR_LAN_IP>:8080/swagger-ui.html
 
 Auth APIs
 Method | Endpoint | Description
@@ -132,18 +132,16 @@ POST| /api/auth/login | Admin login, returns JWT
 Public APIs
 Method | Endpoint | Description
 -------|----------|------------
-GET| /api/faqs| Get FAQs
 POST| /api/chat| Chatbot request
-
 
 Admin (Protected)
 Method | Endpoint | Description
 -------|----------|------------
-GET| /api/admin/faqs| List all KB entries
 POST| /api/admin/faqs| Create new FAQ
 PUT| /api/admin/faqs/{id}| Update FAQ
 DELETE| /api/admin/faqs/{id}| Delete FAQ
 GET| /api/admin/chat-logs| View chat logs
+GET| /api/faqs| List FAQs
 
 
 ## ⚠️ 7. Challenges Faced
@@ -156,7 +154,7 @@ Solved by adding @SecurityScheme config.
 Caused by missing security requirements and token mismatch.
 Fixed using @SecurityRequirement(name = "bearerAuth").
 ### 🔸 CORS & Networking Issues in Flutter
-Solved with custom CorsFilter and using 10.0.2.2 for emulator.
+Solved with custom CorsConfig in backend
 ### 🔸 Clean State Management
 Used GetX for modular controllers and dependency injection.
 
@@ -170,4 +168,5 @@ Used GetX for modular controllers and dependency injection.
 - 🌐 Deploy backend to cloud (Azure / AWS / Render)
 - 📱 Add push notifications for key events
 - 🧠 Improve context-aware AI chat memory
+
 
