@@ -2,8 +2,8 @@ import 'package:frontend/app/utils/end_point.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../../data/models/login.dart';
-import '../../../data/models/login_response.dart';
+import '../../../models/login.dart';
+import '../../../models/login_response.dart';
 
 class AdminApiLoginService extends GetConnect {
 

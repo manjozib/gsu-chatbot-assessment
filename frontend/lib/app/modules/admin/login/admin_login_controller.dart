@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/app/data/models/login.dart';
+import '../../../models/login.dart';
 import 'package:get/get.dart';
 import '../../../utils/storage.dart';
 

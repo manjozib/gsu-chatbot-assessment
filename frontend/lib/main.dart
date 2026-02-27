@@ -4,8 +4,11 @@ import 'app/modules/admin/dashboard/admin_dashboard_controller.dart';
 import 'app/modules/admin/login/admin_login_controller.dart';
 import 'app/modules/chat/chat_controller.dart';
 import 'app/routes/app_pages.dart';
+import 'app/utils/end_point.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Endpoint.init();
   Get.put(ChatController());
   Get.put(AdminLoginController());
   Get.put(AdminManagementController());

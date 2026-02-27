@@ -1,4 +1,4 @@
-import 'package:frontend/app/data/models/chat.dart';
+import '../../models/chat.dart';
 import 'package:frontend/app/utils/end_point.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
@@ -12,14 +12,6 @@ class ChatApiService extends GetConnect {
     baseUrl = Endpoint.getChatApi();
     super.onInit();
   }
-
-  // Future<String> createChat(Chat chat) async {
-  //   final response = await post('$baseUrl/faqs', chat.toJson());
-  //   if (response.status.hasError) {
-  //     throw Exception('Failed to create FAQ');
-  //   }
-  //   return response.body;
-  // }
 
   Future<String> createChat(Chat chat) async {
     try {

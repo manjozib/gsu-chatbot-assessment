@@ -57,8 +57,15 @@ class _ChatViewState extends State<ChatView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(
+              Icons.settings,
+            size: 40,
+          ),
+          onPressed: () => Get.toNamed('/config'),
+        ),
         title: const Text('GSU Chatbot'),
-        centerTitle: false,
+        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(

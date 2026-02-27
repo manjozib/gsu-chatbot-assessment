@@ -1,141 +1,112 @@
-// import 'package:frontend/app/utils/end_point.dart';
-// import 'package:get/get.dart';
-// import '../../../data/models/chat_log.dart';
-// import '../../../data/models/faq.dart';
-// import '../../../utils/storage.dart';
-//
-// class AdminApiService extends GetConnect {
-//   @override
-//   void onInit() {
-//     baseUrl = Endpoint.getAdminApi();
-//     super.onInit();
-//   }
-//
-//   Future<Map<String, String>> _headers() async {
-//     String? token = await Storage.getToken();
-//     return {
-//       'Content-Type': 'application/json',
-//       if (token != null) 'Authorization': 'Bearer $token',
-//     };
-//   }
-//
-//   Future<List<Faq>> getFaqs() async {
-//     print("$baseUrl/faqs?arg0=1&arg1=20");
-//     final response = await get('$baseUrl/faqs?arg0=1&arg1=20', headers: await _headers());
-//     print(response.statusCode);
-//     if (response.status.hasError) {
-//       throw Exception('Failed to load FAQs');
-//     }
-//     return (response.body as List).map((e) => Faq.fromJson(e)).toList();
-//   }
-//
-//   Future<Faq> createFaq(Faq faq) async {
-//     final response = await post(
-//       '$baseUrl/faqs',
-//       faq.toJson(),
-//       headers: await _headers(),
-//     );
-//     if (response.status.hasError) {
-//       throw Exception('Failed to create FAQ');
-//     }
-//     return Faq.fromJson(response.body);
-//   }
-//
-//   Future<Faq> updateFaq(int id, Faq faq) async {
-//     final response = await put(
-//       '$baseUrl/faqs/$id',
-//       faq.toJson(),
-//       headers: await _headers(),
-//     );
-//     if (response.status.hasError) {
-//       throw Exception('Failed to update FAQ');
-//     }
-//     return Faq.fromJson(response.body);
-//   }
-//
-//   Future<void> deleteFaq(int id) async {
-//     final response = await delete(
-//       '$baseUrl/faqs/$id',
-//       headers: await _headers(),
-//     );
-//     if (response.status.hasError) {
-//       throw Exception('Failed to delete FAQ');
-//     }
-//   }
-//
-//   Future<List<ChatLog>> getChatLogs() async {
-//     print("$baseUrl/chat-logs");
-//     final response = await get('$baseUrl/chat-logs', headers: await _headers());
-//     print(response.statusCode);
-//     if (response.status.hasError) {
-//       throw Exception('Failed to load chat logs');
-//     }
-//     return (response.body as List).map((e) => ChatLog.fromJson(e)).toList();
-//   }
-// }
-//
-//
-//
-//
-// // import 'package:frontend/app/utils/end_point.dart';
-// // import 'package:get/get.dart';
-// //
-// // import '../../../data/models/chat_log.dart';
-// // import '../../../data/models/faq.dart';
-// // import '../../../utils/storage.dart';
-// //
-// // class AdminApiService extends GetConnect {
-// //
-// //   @override
-// //   void onInit() {
-// //     baseUrl = Endpoint.getAdminApi();
-// //     super.onInit();
-// //   }
-// //
-// //   Future<Map<String, String>> _headers() async {
-// //     String? token = await Storage.getToken();
-// //     return {
-// //       'Content-Type': 'application/json',
-// //       if (token != null) 'Authorization': 'Bearer $token',
-// //     };
-// //   }
-// //
-// //   Future<List<Login>> getFaqs() async {
-// //     final response = await get('$baseUrl/faqs');
-// //     if (response.status.hasError) {
-// //       throw Exception('Failed to load FAQs');
-// //     }
-// //     return (response.body as List).map((e) => Login.fromJson(e)).toList();
-// //   }
-// //
-// //   Future<Login> createFaq(Login faq) async {
-// //     final response = await post('$baseUrl/faqs', faq.toJson());
-// //     if (response.status.hasError) {
-// //       throw Exception('Failed to create FAQ');
-// //     }
-// //     return Login.fromJson(response.body);
-// //   }
-// //
-// //   Future<Login> updateFaq(int id, Login faq) async {
-// //     final response = await put('$baseUrl/faqs/$id', faq.toJson());
-// //     if (response.status.hasError) {
-// //       throw Exception('Failed to update FAQ');
-// //     }
-// //     return Login.fromJson(response.body);
-// //   }
-// //
-// //   Future<void> deleteFaq(int id) async {
-// //     final response = await delete('$baseUrl/faqs/$id');
-// //     if (response.status.hasError) {
-// //       throw Exception('Failed to delete FAQ');
-// //     }
-// //   }
-// //
-// //   Future<List<ChatLog>> getChatLogs() async {
-// //     final response = await get('$baseUrl/chat-logs');
-// //     if (response.status.hasError) {
-// //       throw Exception('Failed to load chat logs');
-// //     }
-// //     return (response.body as List).map((e) => ChatLog.fromJson(e)).toList();
-// //   }
-// // }
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import '../../../utils/end_point.dart';
+import '../../../utils/storage.dart';
+import '../../../models/faq.dart';
+
+class AdminManagementService {
+
+  Future<Map<String, dynamic>> _get(String endpoint, {Map<String, String>? query}) async {
+    final token = await Storage.getToken();
+    final url = Uri.parse(endpoint).replace(queryParameters: query);
+
+    final response = await http.get(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+        if (token != null) 'Authorization': 'Bearer $token',
+      },
+    );
+
+    return _processResponse(response);
+  }
+
+  Future<Map<String, dynamic>> _post(String endpoint, Map<String, dynamic> body) async {
+    final token = await Storage.getToken();
+    final url = Uri.parse(endpoint);
+
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+        if (token != null) 'Authorization': 'Bearer $token',
+      },
+      body: json.encode(body),
+    );
+
+    return _processResponse(response);
+  }
+
+  Future<Map<String, dynamic>> _put(String endpoint, Map<String, dynamic> body) async {
+    final token = await Storage.getToken();
+    final url = Uri.parse(endpoint);
+    final response = await http.put(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+        if (token != null) 'Authorization': 'Bearer $token',
+      },
+      body: json.encode(body),
+    );
+
+    return _processResponse(response);
+  }
+
+  Future<void> _delete(String endpoint) async {
+    final token = await Storage.getToken();
+    final url = Uri.parse(endpoint);
+
+    final response = await http.delete(
+      url,
+      headers: {
+        if (token != null) 'Authorization': 'Bearer $token',
+      },
+    );
+
+    _processResponse(response);
+  }
+
+  Map<String, dynamic> _processResponse(http.Response response) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      if (response.body.isEmpty) return {};
+      return json.decode(response.body);
+    } else {
+      try {
+        final error = json.decode(response.body);
+        throw error['message'] ?? 'Server error (${response.statusCode})';
+      } catch (_) {
+        throw 'Server error (${response.statusCode})';
+      }
+    }
+  }
+
+  // ---------------- FAQs ----------------
+  Future<Map<String, dynamic>> fetchFaqs(int page, int size) {
+    return _get(Endpoint.getAdminApi(), query: {
+      'page': page.toString(),
+      'size': size.toString(),
+    });
+  }
+
+  Future<void> createFaq(Faq faq) async {
+    final data = faq.toJson();
+    if (faq.id == 0) data.remove('id');
+    await _post(Endpoint.getAdminApi(), data);
+  }
+
+  Future<void> updateFaq(int id, Faq faq) async {
+    await _put('${Endpoint.getAdminApi()}/$id', faq.toJson());
+  }
+
+  Future<void> deleteFaq(int id) async {
+    await _delete('${Endpoint.getAdminApi()}/$id');
+  }
+
+  // ---------------- Chat Logs ----------------
+  Future<Map<String, dynamic>> fetchChatLogs(int page, int size) {
+    return _get(Endpoint.getChatLogApi(), query: {
+      'page': page.toString(),
+      'size': size.toString(),
+    });
+  }
+}
