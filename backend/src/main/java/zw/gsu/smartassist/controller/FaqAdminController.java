@@ -1,5 +1,7 @@
 package zw.gsu.smartassist.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -9,50 +11,69 @@ import zw.gsu.smartassist.dto.faq.FaqCreateRequest;
 import zw.gsu.smartassist.dto.faq.FaqResponse;
 import zw.gsu.smartassist.service.KnowledgeBaseService;
 
-
 @RestController
 @SecurityRequirement(name = "bearerAuth")
 @RequestMapping("/api/admin/faqs")
 public class FaqAdminController {
-    private final KnowledgeBaseService kbService;
-    public FaqAdminController(KnowledgeBaseService kbService) { this.kbService = kbService; }
 
+    private final KnowledgeBaseService kbService;
+
+    public FaqAdminController(KnowledgeBaseService kbService) {
+        this.kbService = kbService;
+    }
+
+//    @Operation(
+//            summary = "List FAQs",
+//            description = "Retrieves a paginated list of FAQs. Default page is 0 and size is 20."
+//    )
 //    @GetMapping
-//    public Page<FaqResponse> list(@RequestParam(defaultValue = "0") int page,
-//                                  @RequestParam(defaultValue = "20") int size) {
+//    public Page<FaqResponse> list(
+//            @Parameter(description = "Page number to retrieve", example = "0")
+//            @RequestParam(name = "page", defaultValue = "0") int page,
+//
+//            @Parameter(description = "Number of FAQs per page", example = "20")
+//            @RequestParam(name = "size", defaultValue = "20") int size) {
+//
 //        return kbService.list(page, size);
 //    }
 
-    @GetMapping
-    public Page<FaqResponse> list(
-            @RequestParam(name = "page", defaultValue = "0") int page,
-            @RequestParam(name = "size", defaultValue = "20") int size) {
-        return kbService.list(page, size);
-    }
-
+    @Operation(
+            summary = "Create a new FAQ",
+            description = "Creates a new FAQ entry."
+    )
     @PostMapping
-    public ResponseEntity<FaqResponse> create(@RequestBody @Valid FaqCreateRequest req){
+    public ResponseEntity<FaqResponse> create(
+            @Parameter(description = "FAQ creation request", required = true)
+            @RequestBody @Valid FaqCreateRequest req) {
+
         return ResponseEntity.ok(kbService.create(req));
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<FaqResponse> update(@PathVariable Long id, @RequestBody @Valid FaqCreateRequest req){
-//        return ResponseEntity.ok(kbService.update(id, req));
-//    }
-
+    @Operation(
+            summary = "Update an existing FAQ",
+            description = "Updates an existing FAQ based on the ID provided."
+    )
     @PutMapping("/{id}")
-    public ResponseEntity<FaqResponse> update(@PathVariable(name = "id") Long id,
-                                              @RequestBody @Valid FaqCreateRequest req) {
+    public ResponseEntity<FaqResponse> update(
+            @Parameter(description = "ID of the FAQ to update", required = true)
+            @PathVariable(name = "id") Long id,
+
+            @Parameter(description = "FAQ update request", required = true)
+            @RequestBody @Valid FaqCreateRequest req) {
+
         return ResponseEntity.ok(kbService.update(id, req));
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> delete(@PathVariable Long id){
-//        kbService.delete(id); return ResponseEntity.noContent().build();
-//    }
-
+    @Operation(
+            summary = "Delete an FAQ",
+            description = "Deletes an FAQ based on the ID provided."
+    )
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
-        kbService.delete(id); return ResponseEntity.noContent().build();
+    public ResponseEntity<?> delete(
+            @Parameter(description = "ID of the FAQ to delete", required = true)
+            @PathVariable(name = "id") Long id) {
+
+        kbService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
