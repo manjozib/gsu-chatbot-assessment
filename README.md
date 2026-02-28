@@ -161,7 +161,7 @@ Solved by adding @SecurityScheme config.
 Caused by missing security requirements and token mismatch.
 Fixed using @SecurityRequirement(name = "bearerAuth").
 ### 🔸 CORS & Networking Issues in Flutter
-Solved with custom CorsFilter and using 10.0.2.2 for emulator.
+Solved with custom CorsFilter.
 ### 🔸 Clean State Management
 Used GetX for modular controllers and dependency injection.
 
@@ -179,6 +179,7 @@ Used GetX for modular controllers and dependency injection.
 - 🌐 Deploy backend to cloud (Azure/AWS/Render)
 - 📱 Add push notifications for key events
 - 🧠 Improve context-aware AI chat memory
+
 
 
 
