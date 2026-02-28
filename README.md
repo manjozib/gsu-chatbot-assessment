@@ -138,14 +138,13 @@ POST| /api/auth/login | Admin login, returns JWT
 Public APIs
 Method | Endpoint | Description
 -------|----------|------------
-GET| /api/faqs| Get FAQs
+GET| /api/faqs| List FAQs entries
 POST| /api/chat| Chatbot request
 
 
 Admin (Protected)
 Method | Endpoint | Description
 -------|----------|------------
-GET| /api/admin/faqs| List all KB entries
 POST| /api/admin/faqs| Create new FAQ
 PUT| /api/admin/faqs/{id}| Update FAQ
 DELETE| /api/admin/faqs/{id}| Delete FAQ
@@ -180,6 +179,7 @@ Used GetX for modular controllers and dependency injection.
 - 🌐 Deploy backend to cloud (Azure/AWS/Render)
 - 📱 Add push notifications for key events
 - 🧠 Improve context-aware AI chat memory
+
 
 
 
