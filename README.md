@@ -95,10 +95,14 @@ flutter pub get
 flutter run
 ```
 4️⃣ API Base URL
-```bash
-Android Emulator: http://10.0.2.2:8080/api
-Real device: http://YOUR_LAN_IP:8080/api
-```
+
+Configure Server configuration by clicking this
+
+![Chat Page](/screenshots/Chat%20Page.jpeg)
+
+Then input backend server ip address and port number to their respective fields and then click save
+
+![Server Config Page](/screenshots/Server%20Config%20Page.jpeg)
 
 ## 🗄 5. Database Setup
 1️⃣ Create database
@@ -170,4 +174,5 @@ Used GetX for modular controllers and dependency injection.
 - 🌐 Deploy backend to cloud (Azure / AWS / Render)
 - 📱 Add push notifications for key events
 - 🧠 Improve context-aware AI chat memory
+
 
