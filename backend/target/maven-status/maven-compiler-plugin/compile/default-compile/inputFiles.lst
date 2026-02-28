@@ -1,3 +1,4 @@
+C:\projects\java\spring\gsu-chatbot-assessment\backend\src\main\java\zw\gsu\smartassist\config\CorsConfig.java
 C:\projects\java\spring\gsu-chatbot-assessment\backend\src\main\java\zw\gsu\smartassist\config\OpenApiConfig.java
 C:\projects\java\spring\gsu-chatbot-assessment\backend\src\main\java\zw\gsu\smartassist\config\RateLimitFilter.java
 C:\projects\java\spring\gsu-chatbot-assessment\backend\src\main\java\zw\gsu\smartassist\config\SecurityConfig.java
@@ -5,7 +6,7 @@ C:\projects\java\spring\gsu-chatbot-assessment\backend\src\main\java\zw\gsu\smar
 C:\projects\java\spring\gsu-chatbot-assessment\backend\src\main\java\zw\gsu\smartassist\controller\AuthController.java
 C:\projects\java\spring\gsu-chatbot-assessment\backend\src\main\java\zw\gsu\smartassist\controller\ChatController.java
 C:\projects\java\spring\gsu-chatbot-assessment\backend\src\main\java\zw\gsu\smartassist\controller\FaqAdminController.java
-C:\projects\java\spring\gsu-chatbot-assessment\backend\src\main\java\zw\gsu\smartassist\controller\FaqPublicController.java
+C:\projects\java\spring\gsu-chatbot-assessment\backend\src\main\java\zw\gsu\smartassist\controller\FaqController.java
 C:\projects\java\spring\gsu-chatbot-assessment\backend\src\main\java\zw\gsu\smartassist\dto\auth\AuthResponse.java
 C:\projects\java\spring\gsu-chatbot-assessment\backend\src\main\java\zw\gsu\smartassist\dto\auth\LoginRequest.java
 C:\projects\java\spring\gsu-chatbot-assessment\backend\src\main\java\zw\gsu\smartassist\dto\chat\ChatRequest.java

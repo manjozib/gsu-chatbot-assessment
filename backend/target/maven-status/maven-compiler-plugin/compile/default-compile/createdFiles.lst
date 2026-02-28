@@ -9,12 +9,12 @@ zw\gsu\smartassist\entity\User.class
 zw\gsu\smartassist\GsuSmartAssistApplication.class
 zw\gsu\smartassist\dto\auth\LoginRequest.class
 zw\gsu\smartassist\entity\Role.class
-zw\gsu\smartassist\controller\FaqPublicController.class
 zw\gsu\smartassist\dto\faq\FaqCreateRequest.class
 zw\gsu\smartassist\service\ChatService.class
 zw\gsu\smartassist\controller\FaqAdminController.class
 zw\gsu\smartassist\config\OpenApiConfig.class
 zw\gsu\smartassist\dto\chat\ChatRequest.class
+zw\gsu\smartassist\controller\FaqController.class
 zw\gsu\smartassist\service\AuthService.class
 zw\gsu\smartassist\controller\ChatController.class
 zw\gsu\smartassist\repository\ChatSessionRepository.class
@@ -25,5 +25,6 @@ zw\gsu\smartassist\security\JwtUtil.class
 zw\gsu\smartassist\config\RateLimitFilter.class
 zw\gsu\smartassist\security\CustomUserDetailsService.class
 zw\gsu\smartassist\controller\AuthController.class
+zw\gsu\smartassist\config\CorsConfig.class
 zw\gsu\smartassist\repository\KnowledgeBaseRepository.class
 zw\gsu\smartassist\dto\auth\AuthResponse.class
