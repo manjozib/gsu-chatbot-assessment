@@ -11,7 +11,8 @@ This documentation outlines the RESTful APIs provided by the GSU SmartAssist app
 - **Method**: `POST`
 - **Endpoint**: `/api/auth/login`
 - **Description**: Logs in a user and returns an authentication token.
-- **Request Body**:
+  
+**Request Body**:
   - `LoginRequest`: Object containing:
     - **username**: User's username.
     - **password**: User's password.
@@ -22,7 +23,7 @@ This documentation outlines the RESTful APIs provided by the GSU SmartAssist app
   "password": "password"
 }
 ```
-- **Response**:
+**Response**:
   - Returns an `AuthResponse`, which includes the authentication token.
 
 ---
@@ -53,57 +54,92 @@ This documentation outlines the RESTful APIs provided by the GSU SmartAssist app
 **Request Body**:
 - `ChatRequest`: Object containing:
   - **message**: The message to send.
+  - **sessionId**: The seesion ID.
 
 ```json
 {
-  "message": "Hello!"
+  "message": "message",
+  "sessionId": "sessiond ID"
 }
 ```
+**Response**:
+- Returns a `ChatResponse` object containing the reply.
 ---
 ## FAQ Management API (Admin)
+
 ### Create a New FAQ
 
 - **Method**: `POST`
 - **Endpoint**: `/api/admin/faqs`
 - **Description**: Creates a new FAQ entry.
+  
 **Request Body**:
 - `FaqCreateRequest`: Object containing:
-  - **question**: The FAQ question.
+  - **category**: The FAQ category.
   - **answer**: The FAQ answer.
+  - **question**: The FAQ question.
+  - **keywords**: The FAQ keywords.
+```json
+{
+    "category": "string",
+    "question": "string",
+    "answer": "string",
+    "keywords": "string"
+}
+```
 **Response**:
 - Returns a `FaqResponse` object.
--
+
 ## Update an Existing FAQ
 
 - **Method**: PUT
 - **Endpoint**: /api/admin/faqs/{id}
 - **Description**: Updates an existing FAQ based on the provided ID.
-**Parameters:
+  
+**Parameters**:
 - `id`: ID of the FAQ to update.
+  
 **Request Body**:
 - `FaqCreateRequest`: Object containing updated FAQ details.
+  - **category**: The FAQ category.
+  - **answer**: The FAQ answer.
+  - **question**: The FAQ question.
+  - **keywords**: The FAQ keywords.
+```json
+{
+    "category": "string",
+    "question": "string",
+    "answer": "string",
+    "keywords": "string"
+}
+```
 **Response**:
-Returns a `FaqResponse` object with updated details.
--
-### Delete an FAQ
+- Returns a `FaqResponse` object with updated details.
+
+### Delete an existing FAQ
 - **Method**: `DELETE`
 - **Endpoint**: `/api/admin/faqs/{id}`
 - **Description**: Deletes an FAQ based on the provided ID.
+  
 **Parameters**:
 - `id`: ID of the FAQ to delete.
+  
 **Response**:
-Returns HTTP 204 No Content on successful deletion.
+- Returns HTTP 204 No Content on successful deletion.
 
 ## FAQ API
 ### List FAQs
 - **Method**: `GET`
 - **Endpoint**: `/api/faqs`
 - **Description**: Retrieves a paginated list of public FAQs.
+  
 **Parameters**:
 - `page` *(optional)*: Page number to retrieve (default: `0`).
 - `size` *(optional)*: Number of FAQs per page (default: `20`).
+  
 **Response**:
-Returns a paginated list of `FaqResponse` objects.
+- Returns a paginated list of `FaqResponse` objects.
  
 ### Summary
 This Markdown document provides a structured overview of the APIs available in the GSU SmartAssist application, including the authentication, chat management, and FAQ functionalities.
+
