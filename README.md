@@ -78,13 +78,15 @@ http://<IP_ADDRESS>:8080
 
 3️⃣ Open API docs
 ```bash
-http://<IP_ADDRESS>:8080/swagger-ui.html
+http://<IP_ADDRESS>:8080/swagger-ui/index.html
 ```
+
+![End points](/screenshots/Endpoints.jpeg)
 
 ### Frontend (Flutter) Setup
 1️⃣ Navigate to Flutter project
 ```bash
-cd flutter_project
+cd frontend
 ```
 2️⃣ Install dependencies
 ```bash
@@ -174,5 +176,6 @@ Used GetX for modular controllers and dependency injection.
 - 🌐 Deploy backend to cloud (Azure / AWS / Render)
 - 📱 Add push notifications for key events
 - 🧠 Improve context-aware AI chat memory
+
 
 
