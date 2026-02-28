@@ -66,6 +66,17 @@ Java 17
 git clone https://github.com/manjozib/gsu-chatbot-assessment.git
 cd gsu-chatbot-assessment/backend
 ```
+🚨***NB***
+- Before running the backend, create the database as instructed in section 5.
+- Copy and replace the below json with three lines in `application.properties`. The file can be found in `backend/src/main/resources/application.properties`. This only works when the backend app and database is in same server.
+- If you have a different configuration, edit accordingly:
+```
+spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/gsu_smartassist}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME:gsu_user}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:gsu_pass}
+```
+- Ensure that your PostgreSQL server is running and accessible before starting the backend application.
+- Adjust other configurations in the application.properties as necessary based on your environment or specific needs.
 
 2️⃣ Install and run
 ```bash
@@ -179,6 +190,7 @@ Used GetX for modular controllers and dependency injection.
 - 🌐 Deploy backend to cloud (Azure/AWS/Render)
 - 📱 Add push notifications for key events
 - 🧠 Improve context-aware AI chat memory
+
 
 
 
