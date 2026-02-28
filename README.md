@@ -21,7 +21,10 @@ This project meets all requirements of the GSU ICTS Software Engineer Practical 
 
 ## 🧱 2. Architecture Explanation
 ### 🔹 High‑Level System Structure
+
 Flutter UI  ⇄  REST API  ⇄  Spring Boot Backend  ⇄  PostgreSQL DB
+
+![End points](/docs/architecture-diagram.png)
 
 ### 🔹 Backend Architecture
 Controller → Service → Repository → Entities → Database
@@ -190,6 +193,7 @@ Used GetX for modular controllers and dependency injection.
 - 🌐 Deploy backend to cloud (Azure/AWS/Render)
 - 📱 Add push notifications for key events
 - 🧠 Improve context-aware AI chat memory
+
 
 
 
