@@ -1,7 +1,4 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:get/get.dart';
-
-import 'end_point.dart';
 
 class Storage {
   static const _k='jwt';
