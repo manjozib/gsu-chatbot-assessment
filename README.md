@@ -78,13 +78,15 @@ http://<IP_ADDRESS>:8080
 
 3️⃣ Open API docs
 ```bash
-http://<IP_ADDRESS>:8080/swagger-ui.html
+http://<IP_ADDRESS>:8080/swagger-ui/index.html
 ```
+
+![End points](/screenshots/Endpoints.jpeg)
 
 ### Frontend (Flutter) Setup
 1️⃣ Navigate to Flutter project
 ```bash
-cd flutter_project
+cd frontend
 ```
 2️⃣ Install dependencies
 ```bash
@@ -95,10 +97,14 @@ flutter pub get
 flutter run
 ```
 4️⃣ API Base URL
-```bash
-Android Emulator: http://10.0.2.2:8080/api
-Real device: http://YOUR_LAN_IP:8080/api
-```
+
+Configure Server configuration by clicking this
+
+![Chat Page](/screenshots/Chat%20Page.jpeg)
+
+Then input backend server ip address and port number to their respective fields and then click save
+
+![Server Config Page](/screenshots/Server%20Config%20Page.jpeg)
 
 ## 🗄 5. Database Setup
 1️⃣ Create database
@@ -122,7 +128,7 @@ password: Admin@12345
 ## 🌐 6. API Documentation Summary
 Full API docs:
 
-👉 http://<IP_ADDRESS>:8080/swagger-ui.html
+👉 http://<IP_ADDRESS>:8080/swagger-ui/index.html
 
 Auth APIs
 Method | Endpoint | Description
@@ -170,4 +176,7 @@ Used GetX for modular controllers and dependency injection.
 - 🌐 Deploy backend to cloud (Azure / AWS / Render)
 - 📱 Add push notifications for key events
 - 🧠 Improve context-aware AI chat memory
+
+
+
 
