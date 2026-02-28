@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import zw.gsu.smartassist.dto.chat.ChatRequest;
 import zw.gsu.smartassist.dto.chat.ChatResponse;
 import zw.gsu.smartassist.entity.ChatSession;
-import zw.gsu.smartassist.entity.KnowledgeBase;
 import zw.gsu.smartassist.repository.ChatSessionRepository;
+import zw.gsu.smartassist.repository.projection.KbSearchHit;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,33 +26,53 @@ public class ChatService {
     }
 
     public ChatResponse chat(ChatRequest req){
-        String userEmail = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
+        final String message = req.message() == null ? "" : req.message().trim();
+        if (message.isEmpty()) {
+            return new ChatResponse(
+                    "Please enter a question (e.g., “How do I apply?”, “What are the fees?”).",
+                    req.sessionId(), false, null
+            );
+        }
+
+        final String userEmail = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
                 .map(a -> a.getName()).orElse(null);
 
-        // Context (not heavily used in MVP)
         chatRepo.findTop10BySessionIdOrderByTimestampDesc(req.sessionId());
+
+        final float ANSWER_THRESHOLD = 0.15f;
 
         String matchedIntent = null;
         String reply = null;
-        List<KnowledgeBase> hits = kbService.searchRaw(req.message());
+        boolean fromAI = false;
+
+        List<KbSearchHit> hits = kbService.searchTopWithRank(message, 3);
+
         if (!hits.isEmpty()) {
-            KnowledgeBase best = hits.get(0);
-            matchedIntent = best.getCategory();
-            reply = best.getAnswer();
+            KbSearchHit top = hits.get(0);
+            matchedIntent = top.getCategory();
+
+            if (top.getRank() != null && top.getRank() >= ANSWER_THRESHOLD) {
+                // Confident enough: return the ANSWER
+                reply = top.getAnswer();
+            } else {
+                // Not confident: return PREDICTED QUESTION suggestion
+                reply = "Did you mean: \"" + top.getQuestion() + "\"?";
+            }
         }
 
-        boolean fromAI = false;
+        // Optional AI fallback
         if (reply == null && aiEnabled) {
             reply = "AI-generated response placeholder (integrate OpenAI call here).";
             fromAI = true;
         }
 
         if (reply == null) {
+            // No hits at all / still null: standard fallback
             reply = "I couldn't find an exact answer. Please check the FAQ page or rephrase your question (e.g., 'admissions', 'fees', 'programmes').";
         }
 
-        chatRepo.save(ChatSession.of(req.sessionId(), userEmail, req.message(), reply));
-
+        chatRepo.save(ChatSession.of(req.sessionId(), userEmail, message, reply));
         return new ChatResponse(reply, req.sessionId(), fromAI, matchedIntent);
     }
+
 }

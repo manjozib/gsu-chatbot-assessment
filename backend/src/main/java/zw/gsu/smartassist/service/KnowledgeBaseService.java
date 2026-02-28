@@ -8,6 +8,7 @@ import zw.gsu.smartassist.dto.faq.FaqCreateRequest;
 import zw.gsu.smartassist.dto.faq.FaqResponse;
 import zw.gsu.smartassist.entity.KnowledgeBase;
 import zw.gsu.smartassist.repository.KnowledgeBaseRepository;
+import zw.gsu.smartassist.repository.projection.KbSearchHit;
 
 import java.util.List;
 
@@ -45,4 +46,5 @@ public class KnowledgeBaseService {
     public void delete(Long id){ repo.deleteById(id); }
 
     public List<KnowledgeBase> searchRaw(String q){ return repo.search(q); }
+    public List<KbSearchHit> searchTopWithRank(String q, int a){ return repo.searchTopWithRank(q, a); }
 }

@@ -4,34 +4,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import zw.gsu.smartassist.entity.KnowledgeBase;
+import zw.gsu.smartassist.repository.projection.KbSearchHit;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface KnowledgeBaseRepository extends JpaRepository<KnowledgeBase, Long> {
-
-//    @Query("""
-//    SELECT k FROM KnowledgeBase k
-//    WHERE lower(k.category) LIKE lower(concat('%', :q, '%'))
-//       OR lower(k.question) LIKE lower(concat('%', :q, '%'))
-//       OR lower(k.answer) LIKE lower(concat('%', :q, '%'))
-//       OR lower(k.keywords) LIKE lower(concat('%', :q, '%'))
-//    """)
-//    List<KnowledgeBase> search(@Param("q") String q);
-
-//    @Query(value = """
-//    SELECT *
-//    FROM knowledge_base k
-//    WHERE to_tsvector('english',
-//          coalesce(k.category,'') || ' ' ||
-//          coalesce(k.question,'') || ' ' ||
-//          coalesce(k.answer,'') || ' ' ||
-//          coalesce(k.keywords,'')
-//    )
-//    @@ plainto_tsquery('english', :searchText)
-//    """,
-//            nativeQuery = true)
-//    List<KnowledgeBase> search(@Param("searchText") String searchText);
 
     @Query(value = """
     SELECT *,
@@ -57,4 +35,15 @@ public interface KnowledgeBaseRepository extends JpaRepository<KnowledgeBase, Lo
     """,
             nativeQuery = true)
     List<KnowledgeBase> search(@Param("searchText") String searchText);
+
+    @Query(value = """
+    WITH q AS (SELECT websearch_to_tsquery('english', :searchText) AS tsq)
+    SELECT k.id, k.category, k.question, k.answer,
+           ts_rank(k.fts, q.tsq) AS rank
+    FROM knowledge_base k, q
+    WHERE k.fts @@ q.tsq
+    ORDER BY rank DESC
+    LIMIT :limit
+    """, nativeQuery = true)
+    List<KbSearchHit> searchTopWithRank(@Param("searchText") String searchText, @Param("limit") int limit);
 }

@@ -13,7 +13,6 @@ import zw.gsu.smartassist.service.KnowledgeBaseService;
 
 @RestController
 @RequestMapping("/api")
-@SecurityRequirement(name = "bearerAuth")
 public class FaqController {
 
     private final KnowledgeBaseService kbService;
@@ -21,16 +20,6 @@ public class FaqController {
     public FaqController(KnowledgeBaseService kbService) {
         this.kbService = kbService;
     }
-
-//    @Operation(
-//            summary = "Get public FAQs",
-//            description = "Retrieves a list of public Frequently Asked Questions (FAQs)."
-//    )
-//    @GetMapping("/faqs")
-//    public List<FaqResponse> publicFaqs() {
-//        return kbService.publicList();
-//    }
-
 
     @Operation(
             summary = "List FAQs",

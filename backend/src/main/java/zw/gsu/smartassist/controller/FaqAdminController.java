@@ -22,21 +22,6 @@ public class FaqAdminController {
         this.kbService = kbService;
     }
 
-//    @Operation(
-//            summary = "List FAQs",
-//            description = "Retrieves a paginated list of FAQs. Default page is 0 and size is 20."
-//    )
-//    @GetMapping
-//    public Page<FaqResponse> list(
-//            @Parameter(description = "Page number to retrieve", example = "0")
-//            @RequestParam(name = "page", defaultValue = "0") int page,
-//
-//            @Parameter(description = "Number of FAQs per page", example = "20")
-//            @RequestParam(name = "size", defaultValue = "20") int size) {
-//
-//        return kbService.list(page, size);
-//    }
-
     @Operation(
             summary = "Create a new FAQ",
             description = "Creates a new FAQ entry."
