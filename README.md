@@ -168,15 +168,18 @@ Used GetX for modular controllers and dependency injection.
 
 ## 🚀 8. Future Improvements
 
+- 📜 Implement a log file for future debugging
+- ❓ Add an FAQ category
+- 📅 Allow chat logs to be filtered by date
+- ⚠️ Handle HTTP status error codes effectively
 - 🧠 Integrate real AI (OpenAI, LLaMA, or Rasa)
-- 🌍 Add multi‑language (English, Shona, Ndebele)
-- 📊 Build analytics dashboard for admin
-- 🔐 Add MFA and refresh tokens
+- 🌍 Add multi-language support (English, Shona, Ndebele)
+- 📊 Build an analytics dashboard for admin
+- 🔐 Add Multi-Factor Authentication (MFA) and refresh tokens
 - ✨ Introduce animations and advanced UI
-- 🌐 Deploy backend to cloud (Azure / AWS / Render)
+- 🌐 Deploy backend to cloud (Azure/AWS/Render)
 - 📱 Add push notifications for key events
 - 🧠 Improve context-aware AI chat memory
-
 
 
 
