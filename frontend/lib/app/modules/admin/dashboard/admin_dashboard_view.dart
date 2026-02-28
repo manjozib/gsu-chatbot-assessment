@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/app/utils/time_formatter.dart';
 import 'package:get/get.dart';
 import '../../../models/faq.dart';
+import '../../faq/faq_list_widget.dart';
 import 'admin_dashboard_controller.dart';
 
 class AdminDashboardView extends StatefulWidget {
@@ -70,7 +71,14 @@ class _AdminDashboardViewState extends State<AdminDashboardView>
       body: TabBarView(
         controller: _tabController,
         children: [
-          _buildFaqsTab(),
+          FaqsListWidget(
+            controller: controller,
+            onRefresh: _refreshFaqs,
+            canEdit: true,
+            canDelete: true,
+            onEdit: (faq) => _showFaqDialog(controller, faq: faq),
+            onDelete: (faq) => _showDeleteDialog(controller, faq),
+          ),
           _buildChatLogsTab(),
         ],
       ),
@@ -85,63 +93,6 @@ class _AdminDashboardViewState extends State<AdminDashboardView>
       ),
     );
   }
-
-  Widget _buildFaqsTab() {
-    return Obx(() {
-      if (controller.isLoadingFaqs.value) {
-        return const Center(child: CircularProgressIndicator());
-      }
-      if (controller.faqs.isEmpty) {
-        return const Center(child: Text('No FAQs yet. Tap + to add one.'));
-      }
-      return RefreshIndicator(
-        onRefresh: _refreshFaqs,
-        child: ListView.builder(
-          padding: const EdgeInsets.all(16),
-          itemCount: controller.faqs.length,
-          itemBuilder: (_, i) {
-            final faq = controller.faqs[i];
-            return Card(
-              margin: const EdgeInsets.only(bottom: 12),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      faq.question,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(faq.answer),
-                    const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.edit, color: Colors.blue),
-                          onPressed: () =>
-                              _showFaqDialog(controller, faq: faq),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.delete, color: Colors.red),
-                          onPressed: () => _showDeleteDialog(controller, faq),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
-        ),
-      );
-    });
-  }
-
   Widget _buildChatLogsTab() {
     return Obx(() {
       if (controller.isLoadingChatLogs.value) {
@@ -161,6 +112,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView>
               margin: const EdgeInsets.only(bottom: 8),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12)),
+              color: log.isResponded ? Colors.green[50]: Colors.red[50] ,
               child: ListTile(
                 leading: CircleAvatar(child: Text(log.user[0])),
                 title: Text(log.user),
