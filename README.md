@@ -128,7 +128,7 @@ password: Admin@12345
 ## 🌐 6. API Documentation Summary
 Full API docs:
 
-👉 http://<IP_ADDRESS>:8080/swagger-ui.html
+👉 http://<IP_ADDRESS>:8080/swagger-ui/index.html
 
 Auth APIs
 Method | Endpoint | Description
@@ -176,6 +176,7 @@ Used GetX for modular controllers and dependency injection.
 - 🌐 Deploy backend to cloud (Azure / AWS / Render)
 - 📱 Add push notifications for key events
 - 🧠 Improve context-aware AI chat memory
+
 
 
 
