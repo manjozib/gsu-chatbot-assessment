@@ -181,6 +181,7 @@ Used GetX for modular controllers and dependency injection.
 
 ## 🚀 8. Future Improvements
 
+- 🔐 Use HTTPS instead of HTTP
 - 📜 Implement a log file for future debugging
 - ❓ Add an FAQ category
 - 📅 Allow chat logs to be filtered by date
@@ -193,6 +194,7 @@ Used GetX for modular controllers and dependency injection.
 - 🌐 Deploy backend to cloud (Azure/AWS/Render)
 - 📱 Add push notifications for key events
 - 🧠 Improve context-aware AI chat memory
+
 
 
 
