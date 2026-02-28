@@ -92,7 +92,7 @@ http://<IP_ADDRESS>:8080
 http://<IP_ADDRESS>:8080/swagger-ui/index.html
 ```
 
-![End points](/screenshots/Endpoints.jpeg)
+![End points](/docs/screenshots/Endpoints.jpeg)
 
 ### Frontend (Flutter) Setup
 1️⃣ Navigate to Flutter project
@@ -111,11 +111,11 @@ flutter run
 
 Configure Server configuration by clicking this
 
-![Chat Page](/screenshots/Chat%20Page.jpeg)
+![Chat Page](/docs/screenshots/Chat%20Page.jpeg)
 
 Then input backend server ip address and port number to their respective fields and then click save
 
-![Server Config Page](/screenshots/Server%20Config%20Page.jpeg)
+![Server Config Page](/docs/screenshots/Server%20Config%20Page.jpeg)
 
 ## 🗄 5. Database Setup
 1️⃣ Create database
@@ -190,6 +190,7 @@ Used GetX for modular controllers and dependency injection.
 - 🌐 Deploy backend to cloud (Azure/AWS/Render)
 - 📱 Add push notifications for key events
 - 🧠 Improve context-aware AI chat memory
+
 
 
 
