@@ -72,7 +72,14 @@ class _ServerConfigViewState extends State<ServerConfigView> {
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const Text('Server Configuration')
+          title: const Text(
+              'Server Configuration',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),

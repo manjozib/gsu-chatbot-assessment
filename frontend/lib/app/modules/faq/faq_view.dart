@@ -31,7 +31,7 @@ class _FaqViewState extends State<FaqView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false, // removes back arrow
+        automaticallyImplyLeading: false,
         elevation: 0,
         centerTitle: true,
         toolbarHeight: 70,

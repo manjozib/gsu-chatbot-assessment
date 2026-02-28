@@ -58,7 +58,14 @@ class _AdminDashboardViewState extends State<AdminDashboardView>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Admin Management'),
+        automaticallyImplyLeading: false,
+        title: const Text(
+            'Admin Management',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
         bottom: TabBar(
           controller: _tabController,
