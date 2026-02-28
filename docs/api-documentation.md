@@ -3,13 +3,13 @@
 ## Overview
 This documentation outlines the RESTful APIs provided by the GSU SmartAssist application. Each API endpoint is organized by its functionality, detailing the HTTP method, endpoint, description, parameters, and request/response structures where applicable.
 
-![End points](/screenshots/Endpoints.jpeg)
+![End points](../docs/screenshots/Endpoints.jpeg)
 
 ---
 
 ## Authentication API
 
-![End points](/screenshots/authAPI.png)
+![End points](../docs/screenshots/authAPI.png)
 
 ### User Login
 - **Method**: `POST`
@@ -34,7 +34,7 @@ This documentation outlines the RESTful APIs provided by the GSU SmartAssist app
 
 ## Chat Log API (Admin)
 
-![Chat Logs](/screenshots/cahtLogs.png)
+![Chat Logs](../docs/screenshots/cahtLogs.png)
 
 ### Retrieve Chat Logs
 - **Method**: `GET`
@@ -52,7 +52,7 @@ This documentation outlines the RESTful APIs provided by the GSU SmartAssist app
 
 ## Chat API
 
-![Chat](/screenshots/createChat.png)
+![Chat](../docs/screenshots/createChat.png)
 
 ### Send Chat Message
 - **Method**: `POST`
@@ -77,7 +77,7 @@ This documentation outlines the RESTful APIs provided by the GSU SmartAssist app
 
 ### Create a New FAQ
 
-![Create FAQ](/screenshots/createFaq.png)
+![Create FAQ](../docs/screenshots/createFaq.png)
 
 - **Method**: `POST`
 - **Endpoint**: `/api/admin/faqs`
@@ -102,7 +102,7 @@ This documentation outlines the RESTful APIs provided by the GSU SmartAssist app
 
 ## Update an Existing FAQ
 
-![End points](/screenshots/UpdateFaq.png)
+![End points](../docs/screenshots/UpdateFaq.png)
 
 - **Method**: PUT
 - **Endpoint**: /api/admin/faqs/{id}
@@ -142,7 +142,7 @@ This documentation outlines the RESTful APIs provided by the GSU SmartAssist app
 ## FAQ API
 ### List FAQs
 
-![End points](/screenshots/ListFaq.png)
+![End points](../docs/screenshots/ListFaq.png)
 
 - **Method**: `GET`
 - **Endpoint**: `/api/faqs`
